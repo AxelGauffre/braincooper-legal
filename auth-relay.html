@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BrainCooper — retour de connexion</title>
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.6;color:#222}</style>
+</head>
+<body>
+<h1>Retour vers BrainCooper…</h1>
+<p>Cette page transmet la réponse du réseau social à BrainCooper, qui tourne sur ton ordinateur.</p>
+<p id="fallback" hidden>Si rien ne se passe, <a id="link" href="#">clique ici</a> (BrainCooper doit être lancé sur cet ordinateur).</p>
+<script>
+  // Les fournisseurs qui exigent une adresse de retour en HTTPS (Instagram)
+  // renvoient ici ; on renvoie à notre tour vers le serveur local avec les
+  // mêmes paramètres (code, state, erreur éventuelle). Le serveur retrouve
+  // le fournisseur grâce au paramètre state.
+  var target = "http://localhost:8766/auth/callback" + window.location.search;
+  document.getElementById("link").href = target;
+  document.getElementById("fallback").hidden = false;
+  window.location.replace(target);
+</script>
+</body>
+</html>
